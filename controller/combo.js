@@ -1,25 +1,22 @@
-const trick_schema = require('./../schema/trick');
+const { get_all_tricks } = require('./trick');
 
-async function get_all_tricks(req, res){
-    let all_tricks = await trick_schema.find();
+async function create_combo(req,res) {
+    const all_tricks = await get_all_tricks();
     try {
-        return all_tricks;
-    } catch(err){
-        return err;
-    }
+        shuffle(all_tricks);
+        const combo = [];
+        for( let i = 0; i < 5; i++ ) {
+            combo.push(all_tricks[Math.floor(Math.random()*all_tricks.length)]);
+        }
+        res.json(combo);
+      } catch(err){
+          res.json({'Message': err});
+      }
 }
 
-exports.get_all_tricks = get_all_tricks;
-
-async function add_trick(req, res){
-    const trick = new trick_schema({name: req.body.name});
-    const added_trick = await trick.save();
-
-    try {
-        return added_trick;
-    } catch(err){
-        return err;
-    }
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+    return array;
 }
 
-exports.add_trick = add_trick;
+exports.create_combo = create_combo;

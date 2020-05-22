@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var {get_all_tricks, add_trick  } = require('../controller/combo')
+var {get_all_tricks, add_trick  } = require('../controller/trick')
 
 //Returns a complete combo
 router.get('/', async function(req, res) {
