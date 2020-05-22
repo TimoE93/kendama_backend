@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  rest_server:
+    image: "node:12"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./:/home/node/app  
+    ports:
+      - 3000:3000
+      - 9229:9229
+    depends_on:
+      - mongo
+    ## set your startup file here
+    command: node --inspect=0.0.0.0:9229 index.js
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27000:27017"
