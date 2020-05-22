@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema({
     name: {
-        type: String
+        type: String,
+    },
+    difficulty: {
+        type: Number
     }
 });
 
