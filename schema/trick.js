@@ -6,6 +6,9 @@ const Schema = mongoose.Schema({
     },
     difficulty: {
         type: Number
+    },
+    onlyatstart: {
+        type: Boolean
     }
 });
 

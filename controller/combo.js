@@ -5,6 +5,9 @@ async function create_combo(req,res) {
     try {
         const difficulty = req.body.difficulty;
         const tricks_difficulty = [];
+        const starter_tricks = [];
+        const combo = [];
+        let number_of_tricks = 5;
         
         all_tricks.forEach( value => {
             if ( value.difficulty <= difficulty ) {
@@ -12,10 +15,30 @@ async function create_combo(req,res) {
             }
         })
 
+        tricks_difficulty.forEach( value => {
+            if ( value.onlyatstart == true ) {
+                starter_tricks.push(value);
+            }
+        })
+
+        const starting_trick = get_starter_trick(starter_tricks);
+        if ( starting_trick !== null ) {
+            combo.push(starting_trick);
+            --number_of_tricks;
+        }
+
         shuffle(tricks_difficulty);
-        const combo = [];
-        for( let i = 0; i < 5; i++ ) {
-            combo.push(tricks_difficulty[Math.floor(Math.random()*tricks_difficulty.length)]);
+        
+        for( let i = 0; i < number_of_tricks; i++ ) {
+            let trick = null;
+            
+            do {
+              trick = tricks_difficulty[Math.floor(Math.random()*tricks_difficulty.length)];
+            }
+            while(trick.onlyatstart === true)
+
+            combo.push(trick);
+           
         }
         res.json(combo);
       } catch(err){
@@ -26,6 +49,18 @@ async function create_combo(req,res) {
 function shuffle(array) {
     array.sort(() => Math.random() - 0.5);
     return array;
+}
+
+function get_starter_trick( starter_tricks) {
+    if ( starter_tricks.length === 0 ) {
+        return null;
+    }
+
+    const random_number = Math.floor(Math.random() * (starter_tricks.length * 5));
+    if ( starter_tricks[random_number] ) {
+        return starter_tricks[random_number] 
+    }
+    return null;
 }
 
 exports.create_combo = create_combo;
