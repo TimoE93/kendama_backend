@@ -3,11 +3,13 @@ var mongoose = require('mongoose');
 var app = express();
 var bodyParser = require('body-parser')
 const router = express.Router();
+var cors = require('cors')
 const trick_router = require('./routes/trick');
 const combo_router = require('./routes/combo');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(cors())
 
 app.get('/', function (req, res) {
   res.send('Hello World!');

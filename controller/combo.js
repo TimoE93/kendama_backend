@@ -3,11 +3,11 @@ const { get_all_tricks } = require('./trick');
 async function create_combo(req,res) {
     const all_tricks = await get_all_tricks();
     try {
-        const difficulty = req.body.difficulty;
+        const difficulty = req.query.difficulty;
         const tricks_difficulty = [];
         const starter_tricks = [];
         const combo = [];
-        let number_of_tricks = 5;
+        let number_of_tricks = req.query.number;
         
         all_tricks.forEach( value => {
             if ( value.difficulty <= difficulty ) {
