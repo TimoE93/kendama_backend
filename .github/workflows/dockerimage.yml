@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login DockerHub
+      run: echo '${{ secrets.docker_hub_password }}' | docker login --username ${{ secrets.docker_hub_username }} --password-stdin
+    - name: Build the Docker image
+      run: docker build -t kendama_image:latest . 
+    - name: Tag the Dockerimage
+      run: docker tag kendama_image kirb/kbe:latest
+    - name: Push the Image
+      run: docker push kirb/kbe:latest
