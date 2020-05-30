@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
 
 setTimeout(() =>
 { 
-  mongoose.connect("mongodb://mongo:27017/kendamacombo", [], function(error) {
+  mongoose.connect(`mongodb://${process.env.DATABASEUSER}:${process.env.DATABASEPW}@mongo:27017/kendamacombo?authSource=admin`, [], function(error) {
     if ( error !== null ) {
         console.log(error);
     }
@@ -36,5 +36,5 @@ app.use('/trick', trick_router);
 app.use('/combo', combo_router);
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+  console.log('Kendama App running on Port 3000');
 });

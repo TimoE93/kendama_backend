@@ -7,6 +7,8 @@ services:
     working_dir: /home/node/app
     environment:
       NODE_ENV: development
+      DATABASEUSER: ${DATABASEUSER}
+      DATABASEPW: ${DATABASEPW}
     volumes:
       - ./:/home/node/app  
     ports:
@@ -21,3 +23,8 @@ services:
     restart: always
     ports:
       - "27000:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DATABASEUSER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DATABASEPW}
+
+  
