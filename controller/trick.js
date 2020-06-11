@@ -12,7 +12,7 @@ async function get_all_tricks(req, res){
 exports.get_all_tricks = get_all_tricks;
 
 async function add_trick(req, res){
-    const trick = new trick_schema({name: req.body.name, difficulty: req.body.difficulty});
+    const trick = new trick_schema({name: req.body.name, difficulty: req.body.difficulty, onlyatstart: req.body.onlyatstart});
     const added_trick = await trick.save();
 
     try {

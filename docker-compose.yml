@@ -26,5 +26,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${DATABASEUSER}
       MONGO_INITDB_ROOT_PASSWORD: ${DATABASEPW}
-
+    volumes:
+      - kendama:/data/db  
+volumes: 
+  kendama:
   
