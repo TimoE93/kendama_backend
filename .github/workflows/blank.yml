@@ -24,7 +24,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+      
+      - name: add public key
+        run: echo "$$PUBLICKEY" > ~/.ssh/known_hosts
+      
       # Runs a single command using the runners shell
       - name: ssh into server
         run: ssh -tt ubuntu@3.127.180.27
