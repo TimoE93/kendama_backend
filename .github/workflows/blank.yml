@@ -30,4 +30,6 @@ jobs:
          username: ${{ secrets.USERNAME }}
          key: ${{ secrets.KEY }}
          port: ${{ secrets.PORT }}
-         script: docker-compose down
+         script: |
+            docker-compose down
+            DATABASEUSER=${{secret.DBUSER}} DATABASEPW=${{DBPASSWORD}} docker-compose up
