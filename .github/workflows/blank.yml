@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: ssh into server
-        run: ssh ubuntu@3.127.180.27
+        run: ssh -tt ubuntu@3.127.180.27
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
