@@ -30,6 +30,7 @@ services:
       DATABASEPW: ${DATABASEPW}
       VIRTUAL_HOST: kendama-combo.com
       VIRTUAL_PORT: 3000
+      MONGOURL: "@mongo:27017"
       LETSENCRYPT_HOST: kendama-combo.com
       LETSENCRYPT_EMAIL: example@mail.de
     networks:
