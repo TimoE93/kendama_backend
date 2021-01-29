@@ -1,21 +1,15 @@
-const { get_all_tricks } = require('./trick');
+const { get_all_tricks_till_difficulty } = require('./trick');
 
 async function create_combo(req,res) {
-    const all_tricks = await get_all_tricks();
+   
     try {
         const difficulty = req.query.difficulty;
-        const tricks_difficulty = [];
+        const all_tricks = await get_all_tricks_till_difficulty(difficulty);
         const starter_tricks = [];
         const combo = [];
         let number_of_tricks = req.query.number;
         
         all_tricks.forEach( value => {
-            if ( value.difficulty <= difficulty ) {
-                tricks_difficulty.push(value);
-            }
-        })
-
-        tricks_difficulty.forEach( value => {
             if ( value.onlyatstart == true ) {
                 starter_tricks.push(value);
             }
@@ -27,20 +21,12 @@ async function create_combo(req,res) {
             --number_of_tricks;
         }
 
-        shuffle(tricks_difficulty);
+        shuffle(all_tricks);
         
-        for( let i = 0; i < number_of_tricks; i++ ) {
-            let trick = null;
-            
-            do {
-              trick = tricks_difficulty[Math.floor(Math.random()*tricks_difficulty.length)];
-            }
-            while(trick.onlyatstart === true)
-
-            combo.push(trick);
-           
-        }
-        res.json(combo);
+        let tricks_for_combo = add_tricks_to_combo(all_tricks, number_of_tricks);
+        let combo_complet = combo.concat(tricks_for_combo);
+        
+        res.json(combo_complet);
       } catch(err){
           res.json({'Message': err});
       }
@@ -61,6 +47,29 @@ function get_starter_trick( starter_tricks) {
         return starter_tricks[random_number] 
     }
     return null;
+}
+
+function add_tricks_to_combo( all_tricks, number_of_tricks ) {
+    let combo = [];
+    for( let i = 0; i < number_of_tricks; i++ ) {
+        let trick = null;
+        let same_trick_as_before = false; 
+        do {
+          trick = all_tricks[Math.floor(Math.random()*all_tricks.length)];
+          if ( combo.length > 0 ) {
+            if ( combo[i-1].name == trick.name ) {
+                same_trick_as_before = true;
+              } else {
+                same_trick_as_before = false;
+              }
+          }
+        }
+        while(trick.onlyatstart === true || same_trick_as_before )
+
+        combo.push(trick);
+    }
+
+    return combo;
 }
 
 exports.create_combo = create_combo;

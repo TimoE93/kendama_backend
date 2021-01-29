@@ -7,6 +7,11 @@ var cors = require('cors')
 const trick_router = require('./routes/trick');
 const combo_router = require('./routes/combo');
 
+var fs = require('fs');
+if (fs.existsSync('.env')) {
+  require('dotenv').config();
+}
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
@@ -19,7 +24,7 @@ app.get('/', function (req, res) {
 
 setTimeout(() =>
 { 
-  mongoose.connect(`mongodb://${process.env.DATABASEUSER}:${process.env.DATABASEPW}@mongo:27017/kendamacombo?authSource=admin`, [], function(error) {
+  mongoose.connect(`mongodb://${process.env.DATABASEUSER}:${process.env.DATABASEPW}${process.env.MONGOURL}/kendamacombo?authSource=admin`, [], function(error) {
     if ( error !== null ) {
         console.log(error);
     }

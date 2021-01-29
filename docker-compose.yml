@@ -9,6 +9,7 @@ services:
       NODE_ENV: development
       DATABASEUSER: ${DATABASEUSER}
       DATABASEPW: ${DATABASEPW}
+      MONGOURL: "@mongo:27017"
     volumes:
       - ./:/home/node/app  
     ports:
