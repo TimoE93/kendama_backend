@@ -1,0 +1,92 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    line-height: 1.7em;
+    height: 100%;
+}
+
+h1, h2, h3 {
+    padding-bottom: 20px;
+}
+
+p {
+   margin: 10px 0;
+}
+
+.container {
+    margin: auto;
+    max-width: 1100px;
+    overflow: hidden;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.height-full{
+    min-height: 100vh;
+}
+
+/*  Navbar */
+
+#navbar {
+    background: #333;
+    color: #ffff;
+    overflow: auto;
+}
+
+#navbar h1 {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.bg-light {
+    background: #f4f4f4;
+    color: #333;
+}
+
+.bg-dark {
+    background: #333;
+    color: #fff;
+}
+
+#main-footer {
+    text-align: center;
+    background: #444;
+    color: #fff;
+    padding: 20px;
+    position:relative;
+    bottom:0;
+}
+
+
+/* alt */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border:none;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 1em;
+    box-shadow: 0 4px 1px 0 rgba(0,0,0,0.2);
+    text-align-last: center;
+}
+
+option {
+    text-align: center;
+}
+
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border:none;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 1em;
+    box-shadow: 0 4px 1px 0 rgba(0,0,0,0.2);
+}

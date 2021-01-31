@@ -1,0 +1,40 @@
+<div class="combo_wrapper height-auto">
+
+<div *ngIf="combo">
+<ul>
+    <li *ngFor="let trick of combo">{{trick.name}}</li>
+</ul>
+</div>
+<div class="pdbottom-15">
+<select name="combo_difficulty" #combo_difficulty>
+  <option value="0">Select Difficulty</option>
+  <option value="0">Level 1</option>
+  <option value="1">Level 2</option>
+  <option value="2">Level 3</option>
+  <option value="3">Level 4</option>
+  <option value="4">Level 5</option>
+  <option value="5">Level 6</option>
+  <option value="6">Level 7</option>
+  <option value="7">Level 8</option>
+  <option value="8">Level 9</option>
+  <option value="9">Level 10</option>
+</select>
+</div>
+<div class="pdbottom-15">
+<select name="combo_number_tricks" #combo_number_tricks>
+    <option value="1">Combo Length</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+  </select>
+</div>
+<div class="pdbottom-15"><button (click)="getCombo(combo_difficulty.value,combo_number_tricks.value)">Get new Combo!</button></div>
+
+</div>

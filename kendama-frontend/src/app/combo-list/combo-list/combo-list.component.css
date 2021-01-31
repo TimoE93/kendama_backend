@@ -1,0 +1,13 @@
+li{
+    list-style: none;
+    padding: 5px;
+    color:#333;
+}
+
+.pd-15 {
+    padding: 15px;
+}
+
+.pdbottom-15 {
+    padding-bottom: 15px;
+}
