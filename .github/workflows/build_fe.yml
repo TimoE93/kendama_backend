@@ -60,5 +60,5 @@ jobs:
       run: ls -R
     - name: Copy data to public folder
       run: |
-       cp -R ./kendama_backend/frontend_artifact/kendama-frontend/. ./kendama_backend/public/
-       ls kendama_backend/public
+       cp -R ./frontend_artifact/kendama-frontend/. ./public/
+       ls ./public
