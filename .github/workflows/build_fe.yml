@@ -53,6 +53,5 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: frontend_artifact
-    - run: |
-          cp -R kendama-frontend/. public/
-          ls -all
+    - name: Display structure of downloaded files
+      run: ls -R
