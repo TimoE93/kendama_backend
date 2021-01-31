@@ -32,8 +32,9 @@ jobs:
       - name: npm dependencies
         run: npm install
       - name: Run Production Build
-        run: |
-          npm run build
+        run: npm run build
+      - name: List directorys
+        run: ls -all  
       - name: Upload Frontend Production Build
         uses: actions/upload-artifact@v2
         with:
