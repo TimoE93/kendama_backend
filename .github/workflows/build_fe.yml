@@ -71,3 +71,23 @@ jobs:
       run: docker tag kendama_image kirb/kbe:latest
     - name: Push the Image
       run: docker push kirb/kbe:latest
+
+      
+  setupserver:
+    needs: build
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+         host: ${{ secrets.HOST }}
+         username: ${{ secrets.USERNAME }}
+         key: ${{ secrets.KEY }}
+         port: ${{ secrets.PORT }}
+         script: |
+            docker-compose down
+            docker image rm ${{secrets.BEIMAGENAME}}
+            DATABASEUSER=${{secrets.DBUSER}} DATABASEPW=${{secrets.DBPASSWORD}} docker-compose up -d
