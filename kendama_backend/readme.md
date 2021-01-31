@@ -5,12 +5,12 @@ docker network create nginx-proxy-network
 
 Start nginx reverse proxy
 ```bash
-docker run --detach --network nginx-proxy-network --name nginx-proxy --publish 80:80 --publish 443:443  --volume /etc/nginx/certs --volume /etc/nginx/vhost.d  --volume /usr/share/nginx/html --volume /var/run/docker.sock:/tmp/docker.sock:ro  jwilder/nginx-proxy
+docker run --restart always --detach --network nginx-proxy-network --name nginx-proxy --publish 80:80 --publish 443:443  --volume /etc/nginx/certs --volume /etc/nginx/vhost.d  --volume /usr/share/nginx/html --volume /var/run/docker.sock:/tmp/docker.sock:ro --volume /home/ubuntu/nginx_config_files/redirect.conf:/etc/nginx/conf.d/redirect.conf jwilder/nginx-proxy
 ```
 
 Start the letsencrypt service
 ```bash
-docker run --detach --network nginx-proxy-network --name nginx-proxy-letsencrypt --volumes-from nginx-proxy --volume /var/run/docker.sock:/var/run/docker.sock:ro --env "DEFAULT_EMAIL=example@test.com" jrcs/letsencrypt-nginx-proxy-companion
+docker run --restart always --detach --network nginx-proxy-network --name nginx-proxy-letsencrypt --volumes-from nginx-proxy --volume /var/run/docker.sock:/var/run/docker.sock:ro --env "DEFAULT_EMAIL=example@test.com" jrcs/letsencrypt-nginx-proxy-companion
 ```
 
 For further information about the reverse proxy, have a look here:
