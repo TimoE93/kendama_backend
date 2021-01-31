@@ -62,7 +62,6 @@ jobs:
       run: |
        cp -R ./frontend_artifact/kendama-frontend/. ./public/
        ls ./public
-    - uses: actions/checkout@v2
     - name: Login DockerHub
       run: echo '${{ secrets.docker_hub_password }}' | docker login --username ${{ secrets.docker_hub_username }} --password-stdin
     - name: Build the Docker image
