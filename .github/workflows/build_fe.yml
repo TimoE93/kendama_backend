@@ -28,12 +28,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Change Directory
         run: cd kendama-frontend
-      - name: Install ng-cli
-        run: sudo npm install -g angular-cli
       # Runs a set of commands using the runners shell
       - name: Run Production Build
         run: |
-          ng build --configuration=production
+          npm run build
       - name: Upload Frontend Production Build
         uses: actions/upload-artifact@v2
         with:
