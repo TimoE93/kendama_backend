@@ -44,6 +44,9 @@ jobs:
   build:
     needs: build_frontend
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./kendama_backend
 
     steps:
     - uses: actions/checkout@v2
